@@ -16,13 +16,12 @@ export default function App() {
   };
 
   const inputIncrement = () => {
-    dispatch({ type: 'counter/inputIncrement', payload: { input } });
+    dispatch({ type: 'counter/inputIncrement', payload: input });
   };
-  console.log(inputIncrement);
   return (
     <div>
       <input
-        type="text"
+        type="number"
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />

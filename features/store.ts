@@ -7,7 +7,7 @@ function counterReducer(state = { value: 0 }, action) {
     case 'counter/decrement':
       return { ...state, value: state.value - 1 };
     case 'counter/inputIncrement':
-      return { ...state, value: state.value + Number(action.payload.input) };
+      return { ...state, value: state.value + Number(action.payload) };
     default:
       return state;
   }
