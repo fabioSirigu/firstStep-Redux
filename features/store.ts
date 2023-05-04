@@ -7,10 +7,13 @@ function counterReducer(state = { value: 0 }, action) {
     case 'counter/decrement':
       return { ...state, value: state.value - 1 };
     case 'counter/inputIncrement':
-      return { ...state, value: state.value + Number(action.payload) };
+      return { ...state, value: state.value + Number(action.payload.input) };
     default:
       return state;
   }
 }
 
 export let store = createStore(counterReducer);
+export type store = {
+  value: number;
+};

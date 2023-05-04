@@ -1,11 +1,12 @@
 import * as React from 'react';
 import './style.css';
 import { useSelector, useDispatch } from 'react-redux';
+import { store } from './features/store';
 
 export default function App() {
   const [input, setInput] = React.useState('');
   const dispatch = useDispatch();
-  const value = useSelector((state: any) => state.value);
+  const value = useSelector((state: store) => state.value);
 
   const increment = () => {
     dispatch({ type: 'counter/increment' });
@@ -16,7 +17,7 @@ export default function App() {
   };
 
   const inputIncrement = () => {
-    dispatch({ type: 'counter/inputIncrement', payload: input });
+    dispatch({ type: 'counter/inputIncrement', payload: { input } });
   };
   return (
     <div>
