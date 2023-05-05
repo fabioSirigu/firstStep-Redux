@@ -21,15 +21,18 @@ export default function App() {
   };
   return (
     <div>
-      <input
-        type="number"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-      />
+      <div>
+        <input
+          placeholder="Scrivi una quantità"
+          type="number"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
+      </div>
+      <button onClick={inputIncrement}>Increment by value</button>
+      <p>Value: {value}</p>
       <button onClick={increment}>+</button>
       <button onClick={decrement}>-</button>
-      <button onClick={inputIncrement}>Increment by value</button>
-      <p>{value}</p>
     </div>
   );
 }
