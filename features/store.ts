@@ -1,19 +1,21 @@
 import { createStore } from 'redux';
+import { DECREMENT, INCREMENT, INPUT_INCREMENT } from './counter/constants';
 
 function counterReducer(state = { value: 0 }, action) {
   switch (action.type) {
-    case 'counter/increment':
+    case INCREMENT:
       return { ...state, value: state.value + 1 };
-    case 'counter/decrement':
+    case DECREMENT:
       return { ...state, value: state.value - 1 };
-    case 'counter/inputIncrement':
-      return { ...state, value: state.value + Number(action.payload.input) };
+    case INPUT_INCREMENT:
+      return { ...state, value: state.value + action.payload };
     default:
       return state;
   }
 }
 
 export let store = createStore(counterReducer);
-export type store = {
+
+export type Store = {
   value: number;
 };

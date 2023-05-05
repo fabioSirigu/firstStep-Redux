@@ -1,24 +1,35 @@
 import * as React from 'react';
 import './style.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { store } from './features/store';
+import { Store } from './features/store';
+import {
+  DECREMENT,
+  INCREMENT,
+  INPUT_INCREMENT,
+} from './features/counter/constants';
+import {
+  incrementByValue,
+  increment,
+  decrement,
+} from './features/counter/actions';
 
 export default function App() {
-  const [input, setInput] = React.useState('');
+  const [input, setInput] = React.useState(0);
   const dispatch = useDispatch();
-  const value = useSelector((state: store) => state.value);
+  const value = useSelector((state: Store) => state.value);
 
-  const increment = () => {
-    dispatch({ type: 'counter/increment' });
+  const onIncrement = () => {
+    dispatch(increment());
   };
 
-  const decrement = () => {
-    dispatch({ type: 'counter/decrement' });
+  const onDecrement = () => {
+    dispatch(decrement());
   };
 
   const inputIncrement = () => {
-    dispatch({ type: 'counter/inputIncrement', payload: { input } });
+    dispatch(incrementByValue(input));
   };
+
   return (
     <div>
       <div>
@@ -26,13 +37,13 @@ export default function App() {
           placeholder="Scrivi una quantità"
           type="number"
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e) => setInput(e.target.valueAsNumber)}
         />
       </div>
       <button onClick={inputIncrement}>Increment by value</button>
       <p>Value: {value}</p>
-      <button onClick={increment}>+</button>
-      <button onClick={decrement}>-</button>
+      <button onClick={onIncrement}>+</button>
+      <button onClick={onDecrement}>-</button>
     </div>
   );
 }
